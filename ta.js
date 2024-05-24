@@ -30,21 +30,21 @@ function val(event) {
         chnode1.setAttribute("id", "sn");
         let imgSrc = "";
         if (a === "Food") {
-            imgSrc = "../images/food.svg";
+            imgSrc = "food.svg";
         } else if (a === "Transport") {
-            imgSrc = "../images/transport.svg";
+            imgSrc = "transport.svg";
         } else if (a === "Party") {
-            imgSrc = "../images/party.svg";
+            imgSrc = "party.svg";
         } else if (a === "Groceries") {
-            imgSrc = "../images/groceries.svg";
+            imgSrc = "groceries.svg";
         } else if (a === "Clothing") {
-            imgSrc = "../images/clothing.svg";
+            imgSrc = "clothing.svg";
         } else if (a === "Bills") {
-            imgSrc = "../images/bills.svg";
+            imgSrc = "bills.svg";
         } else if (a === "Health care") {
-            imgSrc = "../images/healthcare.svg";
+            imgSrc = "healthcare.svg";
         } else if (a === "Entertainment") {
-            imgSrc = "../images/entertainment.svg";
+            imgSrc = "entertainment.svg";
         }
         if (imgSrc !== "") {
             let categoryImg = document.createElement("img");
