@@ -30,21 +30,21 @@ function val(event) {
         chnode1.setAttribute("id", "sn");
         let imgSrc = "";
         if (a === "Food") {
-            imgSrc = "food.svg";
+            imgSrc = "../images/food.svg";
         } else if (a === "Transport") {
-            imgSrc = "transport.svg";
+            imgSrc = "../images/transport.svg";
         } else if (a === "Party") {
-            imgSrc = "party.svg";
+            imgSrc = "../images/party.svg";
         } else if (a === "Groceries") {
-            imgSrc = "groceries.svg";
+            imgSrc = "../images/groceries.svg";
         } else if (a === "Clothing") {
-            imgSrc = "clothing.svg";
+            imgSrc = "../images/clothing.svg";
         } else if (a === "Bills") {
-            imgSrc = "bills.svg";
+            imgSrc = "../images/bills.svg";
         } else if (a === "Health care") {
-            imgSrc = "healthcare.svg";
+            imgSrc = "../images/healthcare.svg";
         } else if (a === "Entertainment") {
-            imgSrc = "entertainment.svg";
+            imgSrc = "../images/entertainment.svg";
         }
         if (imgSrc !== "") {
             let categoryImg = document.createElement("img");
@@ -109,11 +109,29 @@ function del(){
 }
 function Update(){
     t=0;
-    let tot=document.querySelectorAll("td#spent");                    //total update
+    let In=0;
+    let debt=0;
+    let tot=document.querySelectorAll("td#spent");
     for(var j=0;j<tot.length;j++){
-                t+=Number(tot[j].className);
+        if(tot[j].previousElementSibling.innerHTML!="Income"){
+            t+=Number(tot[j].className);
+        }else{
+            In+=Number(tot[j].className);
+        }
+        debt=In;
+        if(t>0){
+            debt=In-t;
+        }
+        
+        
     }
     document.getElementById("res").innerHTML="₹ "+t+" /-";
+    document.getElementById("income").innerHTML="₹ "+In+" /-";
+    if(debt<0){
+        document.getElementById("bal").innerHTML="- ₹ "+Math.abs(debt)+" /-";
+    }else{
+        document.getElementById("bal").innerHTML="₹ "+debt+" /-";
+    }
 }
 function checkIt() {
     var mycheckbox = document.getElementById("mc");
@@ -121,10 +139,7 @@ function checkIt() {
     checkboxes.forEach(function(checkbox) {
         checkbox.checked = mycheckbox.checked;
     });
-    console.log(checkboxes.length);
-    for(var i=1;i<checkboxes.length;i++){
-        
-    }
+    
 }function Show() {
     // Remove existing canvas element
     var oldCanvas = document.getElementById("myChart");
@@ -141,11 +156,15 @@ function checkIt() {
     let x = document.querySelectorAll("#spent");
 
     y.forEach(function(el) {
-        s.add(el.innerHTML);
+        if(el.innerHTML!="Income"){
+            s.add(el.innerHTML);
+        }
+        
     });
 
     for (var i = 0; i < x.length; i++) {
-        let v = y[i].textContent.trim(); // Category (trimmed to remove leading/trailing whitespace)
+        if(y[i].innerHTML!="Income"){
+            let v = y[i].textContent.trim(); // Category (trimmed to remove leading/trailing whitespace)
         let amt = parseInt(x[i].textContent); // Spent amount; using textContent to get the text content
     
         // Check if the category already exists in obj
@@ -154,6 +173,8 @@ function checkIt() {
         } else {
             obj[v] = amt; // If not exists, set the spent amount as the total
         }
+        }
+        
     }
 
     const keys = Object.keys(obj);
