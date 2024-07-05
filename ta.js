@@ -30,21 +30,21 @@ function val(event) {
         chnode1.setAttribute("id", "sn");
         let imgSrc = "";
         if (a === "Food") {
-            imgSrc = "food.svg";
+            imgSrc = "../images/food.svg";
         } else if (a === "Transport") {
-            imgSrc = "transport.svg";
+            imgSrc = "../images/transport.svg";
         } else if (a === "Party") {
-            imgSrc = "party.svg";
+            imgSrc = "../images/party.svg";
         } else if (a === "Groceries") {
-            imgSrc = "groceries.svg";
+            imgSrc = "../images/groceries.svg";
         } else if (a === "Clothing") {
-            imgSrc = "clothing.svg";
+            imgSrc = "../images/clothing.svg";
         } else if (a === "Bills") {
-            imgSrc = "bills.svg";
+            imgSrc = "../images/bills.svg";
         } else if (a === "Health care") {
-            imgSrc = "healthcare.svg";
+            imgSrc = "../images/healthcare.svg";
         } else if (a === "Entertainment") {
-            imgSrc = "entertainment.svg";
+            imgSrc = "../images/entertainment.svg";
         }
         if (imgSrc !== "") {
             let categoryImg = document.createElement("img");
@@ -79,11 +79,9 @@ function Uncheck(){
         }
     }
 }
-function Remve(){
-    let dv=document.querySelectorAll('input[type="checkbox"]');
-    for(var b=0;b<=dv.length;b++){                                  //to remove checkbox.ched after adding elementor deleting
-        dv[b].checked=false;
-    }
+function Remve() {
+    let dv = document.querySelectorAll('input[type="checkbox"]');
+    dv.forEach(checkbox => checkbox.checked = false);
 }
 
 function del(){
@@ -141,7 +139,6 @@ function checkIt() {
     });
     
 }function Show() {
-    // Remove existing canvas element
     var oldCanvas = document.getElementById("myChart");
     oldCanvas.parentNode.removeChild(oldCanvas);
 
@@ -163,7 +160,6 @@ function checkIt() {
     });
 
     for (var i = 0; i < x.length; i++) {
-        if(y[i].innerHTML!="Income"){
             let v = y[i].textContent.trim(); // Category (trimmed to remove leading/trailing whitespace)
         let amt = parseInt(x[i].textContent); // Spent amount; using textContent to get the text content
     
@@ -173,41 +169,38 @@ function checkIt() {
         } else {
             obj[v] = amt; // If not exists, set the spent amount as the total
         }
-        }
+        
         
     }
 
     const keys = Object.keys(obj);
     const values = keys.map(key => obj[key]);
-    var barColors = ["#4031a3","#4031a3","#4031a3","#4031a3","#4031a3","#4031a3","#4031a3","#4031a3"];
-
-    // Create new chart
+//     function getRandomColor() {
+//   const r = Math.floor(Math.random() * 256);
+//   const g = Math.floor(Math.random() * 256);
+//   const b = Math.floor(Math.random() * 256);
+//   return `rgb(${r}, ${g}, ${b})`;
+//     }
+var barColors = ['rgb(125, 39, 161)', 'rgb(181, 77, 153)', 'rgb(115, 89, 180)', 'rgb(223, 110, 44)', 'rgb(121, 167, 18)', 'rgb(43, 117, 176)', 'rgb(214, 174, 94)', 'rgb(125, 39, 221)','rgb(187, 59, 34)'];
+// for (let i = 0; i < keys.length; i++) {
+//   barColors.push(getRandomColor());
+// }
+console.log(barColors);
     var ctx = newCanvas.getContext('2d');
-    new Chart(ctx, {
-        type: "bar",
+    new Chart("myChart", {
+        type: "pie",
         data: {
-            labels: keys,
-            datasets: [{
-                backgroundColor: barColors,
-                data: values
-            }]
+          labels: keys,
+          datasets: [{
+            backgroundColor: barColors,
+            data: values
+          }]
         },
         options: {
-            plugins: {
-                legend: {
-                    display: false,
-                },
-                title: {
-                    display: true,
-                    text: "Analysis",
-                    color:  '#443a85',
-                    font:{
-                        size: 40,
-                        color: 'black'
-                    }
-                },
-            }
-            
+          title: {
+            display: true,
+            text: "Analysis"
+          }
         }
-    });
+      });
 }
