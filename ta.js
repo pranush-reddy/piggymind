@@ -30,21 +30,21 @@ function val(event) {
         chnode1.setAttribute("id", "sn");
         let imgSrc = "";
         if (a === "Food") {
-            imgSrc = "food.svg";
+            imgSrc = "../images/food.svg";
         } else if (a === "Transport") {
-            imgSrc = "transport.svg";
+            imgSrc = "../images/transport.svg";
         } else if (a === "Party") {
-            imgSrc = "party.svg";
+            imgSrc = "../images/party.svg";
         } else if (a === "Groceries") {
-            imgSrc = "groceries.svg";
+            imgSrc = "../images/groceries.svg";
         } else if (a === "Clothing") {
-            imgSrc = "clothing.svg";
+            imgSrc = "../images/clothing.svg";
         } else if (a === "Bills") {
-            imgSrc = "bills.svg";
+            imgSrc = "../images/bills.svg";
         } else if (a === "Health care") {
-            imgSrc = "healthcare.svg";
+            imgSrc = "../images/healthcare.svg";
         } else if (a === "Entertainment") {
-            imgSrc = "entertainment.svg";
+            imgSrc = "../images/entertainment.svg";
         }
         if (imgSrc !== "") {
             let categoryImg = document.createElement("img");
@@ -139,6 +139,7 @@ function checkIt() {
     });
     
 }function Show() {
+    // Remove existing canvas element
     var oldCanvas = document.getElementById("myChart");
     oldCanvas.parentNode.removeChild(oldCanvas);
 
